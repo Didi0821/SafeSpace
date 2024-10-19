@@ -1,0 +1,161 @@
+SafeSpace Code:
+onEvent("LoginButton", "click", function( ) {
+  setScreen("LoginScreen");
+  //setScreen("drugeffectscreen");
+});
+onEvent("signinbutton", "click", function( ) {
+  setScreen("ProfilePage");
+});
+onEvent("selfcarebutton", "click", function( ) {
+  setScreen("selfcarechecklistintro");
+});
+onEvent("drugeffectsbutton", "click", function( ) {
+  setScreen("drugeffectscreen");
+});
+onEvent ("ResourcesButton", "click", function( ) {
+  setScreen("Resourcesscreen");
+});
+onEvent ("selfcarestart", "click", function( ){
+  setScreen("selfcarescreen1");
+});
+onEvent("faketextButton", "click", function( ) {
+  //setScreen("faketextscreen");
+  setScreen("faketextfinishscreen");
+});
+onEvent("therapybutton", "click", function( ) {
+  setScreen("therapyscreen");
+});
+onEvent("betterhelpbutton", "click", function( ) {
+  setScreen("betterhelpscreen");
+});
+onEvent("mentalhealthmatchbutton", "click", function( ) {
+  setScreen("mentalhealthmatchscreen");
+});
+onEvent("talkspacebutton", "click", function( ) {
+  setScreen("talkspacescreen");
+});
+onEvent("therapyBackButton", "click", function( ) {
+  setScreen("Resourcesscreen");
+});
+onEvent("selfcaresubmit1", "click", function( ) {
+console.log(getNumber("selfcaredropdown1")+ getNumber("selfcaredropdown2")+getNumber("selfcaredropdown3")) ;
+ if(getNumber("selfcaredropdown1")+ getNumber("selfcaredropdown2")+getNumber("selfcaredropdown3") <=5)
+  {
+    setScreen("selfcarescreen1-5");
+  }
+  else if (getNumber("selfcaredropdown1") + getNumber("selfcaredropdown2") + getNumber("selfcaredropdown3") > 5 && getNumber("selfcaredropdown1") + getNumber("selfcaredropdown2") + getNumber("selfcaredropdown3") < 11) {
+    setScreen("selfcarescreen6-10");
+  }
+  else if (getNumber("selfcaredropdown1")+ getNumber("selfcaredropdown2")+getNumber("selfcaredropdown3") > 10)
+  {
+    setScreen("selfcarescreen>11");
+  }
+    
+});
+
+
+onEvent("rehabcentersbutton", "click", function( ) {
+	console.log("rehabcentersbutton clicked!");
+	setScreen("OnlineMHResources");
+	var onlineResourceText="Crisis Hotlines and Text Lines"+ '\n';
+	var onlineResourceOLT="Online Therapy and Counseling"+ '\n';
+	var onlineResourceMH="Mental Health Apps" + '\n';
+	var onlineResourceOSG="Online Support Groups"+ '\n';
+	
+	readRecords("OnlineResources", {}, function(records) {
+	  console.log(records);
+	  for (var i =0; i < records.length; i++) {
+	    
+	    if(records[i].Type == "Text") {
+	    console.log(i+ records[i].Name + ': ' + records[i].Value);
+	    onlineResourceText = onlineResourceText + records[i].Name + ': ' + records[i].Value;
+	    onlineResourceText = onlineResourceText + '\n';
+	    }
+	    if(records[i].Type == "OLT") {
+	    console.log(i+ records[i].Name + ': ' + records[i].Value);
+	    onlineResourceOLT = onlineResourceOLT + records[i].Name + ': ' + records[i].Value;
+	    onlineResourceOLT = onlineResourceOLT + '\n';
+	    }
+	    if(records[i].Type == "MH") {
+	    console.log(i+ records[i].Name + ': ' + records[i].Value);
+	    onlineResourceMH = onlineResourceMH + records[i].Name + ': ' + records[i].Value;
+	    onlineResourceMH = onlineResourceMH + '\n';
+	    }
+	    if(records[i].Type == "OSG") {
+	    console.log(i+ records[i].Name + ': ' + records[i].Value);
+	    onlineResourceOSG = onlineResourceOSG + records[i].Name + ': ' + records[i].Value;
+	    onlineResourceOSG = onlineResourceOSG + '\n';
+	    }
+	  }
+  
+	  setText("text_areaCrisis",onlineResourceText);
+	  setText("text_areaOLT",onlineResourceOLT);
+	  setText("text_areaMH",onlineResourceMH);
+	  setText("text_areaOSG",onlineResourceOSG);
+	});
+	
+});
+onEvent("SafeSpaceChatButton", "click", function( ) {
+	console.log("SafeSpaceChatButton clicked!");
+	 open("https://aditimuthukumar-lifelink.hf.space");
+});
+onEvent("drugeffectsbutton", "click", function( ) {
+	console.log("drugeffectsbutton clicked!");
+	setScreen("drugeffectscreen");
+});
+onEvent("dropdown1", "change", function( ) {
+	console.log("Selected option: " + getText("dropdown1"));
+
+	if(getText("dropdown1")=="How The Brain Works") {
+	  setImageURL("image2","How-Brain-Works.png");
+	}
+	else if(getText("dropdown1")=="Teen Brain") {
+	  setImageURL("image2","Teen-Brain.png");
+	}
+	else if(getText("dropdown1")=="Brain Development") {
+	  setImageURL("image2","Teen-Brain-Development.png");
+	}
+	else if(getText("dropdown1")=="Substance Addiction") {
+	  setImageURL("image2","Substance-Addiction.png");
+	}
+	else if(getText("dropdown1")=="Drug Effect on Brain") {
+	  setImageURL("image2","Drug-Effect-Body.png");
+	}
+	console.log("Shown " + getImageURL("image2"));
+});
+onEvent("onlineresourcesbackbutton", "click", function( ) {
+	setScreen("Resourcesscreen");
+});
+onEvent("schomebutton", "click", function( ) {
+	setScreen("ProfilePage");
+});
+onEvent("sc1-5homebutton", "click", function( ) {
+	setScreen("ProfilePage");
+});
+onEvent("sc6-10homebutton", "click", function( ) {
+	setScreen("ProfilePage");
+});
+onEvent("sc>11homebutton", "click", function( ) {
+	setScreen("ProfilePage");
+});
+onEvent("drugeffectsbackbutton", "click", function( ) {
+		setScreen("ProfilePage");
+});
+onEvent("resourcesbackbutton", "click", function( ) {
+		setScreen("ProfilePage");
+});
+onEvent("bhBackButton", "click", function( ) {
+		setScreen("therapyscreen");
+});
+onEvent("mhmBackButton", "click", function( ) {
+		setScreen("therapyscreen");
+});
+onEvent("tsBackButton", "click", function( ) {
+		setScreen("therapyscreen");
+});
+onEvent("ftfinishbackbutton", "click", function( ) {
+		setScreen("ProfilePage");
+});
+onEvent("therapyButton", "click", function( ) {
+  setScreen("therapyscreen");
+});
